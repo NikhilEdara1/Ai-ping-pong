@@ -23,3 +23,9 @@ text-align: center;
     color: red;
     background-color: aqua;
 }
+
+canvas{
+    border-color: aquamarine;
+    box-shadow:20px;
+    position:center;
+}
