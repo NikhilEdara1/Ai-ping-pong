@@ -14,7 +14,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/addons/p5.sound.min.js"></script>   
 
     </head>
-    <body background="background.jpg">
+    <body background="background1.jpg">
 
         <center>
             <div class="btn btn-info heading">
@@ -26,11 +26,13 @@
             <br>
             <button class="btn btn-info" id="start_game" onclick="startgame()">Play Game</button>
             <br>
-            <button id="restart" class="btn btn-danger" onclick="restart()">Restart</button>
+            <h4 class="btn btn-warning" id="status" >Status:</h4>
+            
             <div id="canvas"></div>
 
             <br>
-            <h4 class="btn btn-warning" id="status" >Status:</h4>
+            <br>
+            <button id="restart" class="btn btn-danger" onclick="restart()">Restart</button>
 
             <div id="myModal" class="modal fade">
                 <div class="modal-dialog">

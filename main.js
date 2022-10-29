@@ -1,6 +1,6 @@
 
 /*created by prashant shukla */
-
+game_status = "";
 var paddle2 =10,paddle1=10;
 
 var paddle1X = 10,paddle1Height = 110;
@@ -26,7 +26,7 @@ function setup(){
   canvas.parent('canvas');
   video = createCapture(VIDEO);
   video.size(700,600);
-  video.hide();
+ video.hide();
 
   poseNet =ml5.poseNet(video,modelloaded);
 poseNet.on('pose',posedetection);
@@ -36,11 +36,17 @@ function modelloaded(){
   console.log("modeloaded");
 }
 
+function startgame(){
+    game_status = "start"; 
+    document.getElementById("status").innerHTML = "Game Is Loaded";
+}
 
 function draw(){
+  if(game_status == "start"){
+    background(0); 
   image(video,0,0,700,600);
-
- background(0); 
+  
+ 
 
  fill("black");
  stroke("black");
@@ -77,9 +83,12 @@ function draw(){
    
    //function move call which in very important
     move();
+   }
 }
 
-
+function posedetection(result){
+console.log(result);
+}
 
 //function reset when ball does notcame in the contact of padde
 function reset(){
