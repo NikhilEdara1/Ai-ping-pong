@@ -1,7 +1,11 @@
 
 /*created by prashant shukla */
 game_status = "";
+rightX = "";
+rightY = "";
+rightscore = "";
 var paddle2 =10,paddle1=10;
+result = [];
 
 var paddle1X = 10,paddle1Height = 110;
 var paddle2Y = 685,paddle2Height = 70;
@@ -28,18 +32,30 @@ function setup(){
   video.size(700,600);
  video.hide();
 
-  poseNet =ml5.poseNet(video,modelloaded);
-poseNet.on('pose',posedetection);
+  posenet =ml5.poseNet(video,modelloaded);
+  posenet.on('pose',gotposes);
 }
 
 function modelloaded(){
   console.log("modeloaded");
 }
 
+function gotposes(){
+  if(result.length>0){
+    console.log(result);
+    rightX=result[0].pose.rightwrist.x;
+    rightY=result[0].pose.rightwrist.y;
+    console.log('rightx and righty'+rightX+rightY);
+    rightscore=result[0].pose.rightwrist;
+    console.log('this is the right wrist score'+rightscore);
+  }
+}
+
 function startgame(){
     game_status = "start"; 
     document.getElementById("status").innerHTML = "Game Is Loaded";
 }
+
 
 function draw(){
   if(game_status == "start"){
@@ -84,11 +100,16 @@ function draw(){
    //function move call which in very important
     move();
    }
+
+   if(rightscore>0.2){
+     fill("#32CD32");
+     stroke("#32CD32");
+     circle(rightX,rightY,10);
+   }
 }
 
-function posedetection(result){
-console.log(result);
-}
+
+
 
 //function reset when ball does notcame in the contact of padde
 function reset(){
